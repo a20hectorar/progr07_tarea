@@ -12,8 +12,6 @@ import java.util.regex.Pattern;
  * @author Hector
  */
 public class Principal {
-    int tipoCuenta;
-    double saldoInicial=0;
     public static void main(String[] args){
         System.out.println("Escoja una operación a realizar: ");
         System.out.println("1. Abrir una cuenta nueva.");
@@ -82,7 +80,6 @@ public class Principal {
                         
                         
                 }
-                Banco.abrirCuenta(CuentaBancaria);
             }
         }
     }
