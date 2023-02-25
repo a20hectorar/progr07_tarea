@@ -61,12 +61,13 @@ public class Principal {
                     
                 switch (tipoCuenta){
                     case 1:
-                        
-                        
+                        CuentaAhorro nuevaCuentaAhorro=new CuentaAhorro();
+                        nuevaCuentaAhorro=(CuentaAhorro) nuevaCuenta;
                         System.out.println("Introduzca el tipo de interés de remuneración: ");
-                        
+                        nuevaCuentaAhorro.setInteres(sc.nextDouble());
                         
                     case 2:
+                        
                         System.out.println("Introduzca comisión de mantenimiento: ");
                         
                         

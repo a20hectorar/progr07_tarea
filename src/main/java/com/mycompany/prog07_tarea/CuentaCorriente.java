@@ -9,6 +9,18 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
-public class CuentaCorriente extends CuentaBancaria{
+public abstract class CuentaCorriente extends CuentaBancaria{
+    private String listaEntidadesAutorizadasCobro;
+    
+    public CuentaCorriente(){};
+
+    public String getListaEntidadesAutorizadasCobro() {
+        return listaEntidadesAutorizadasCobro;
+    }
+
+    public void setListaEntidadesAutorizadasCobro(String listaEntidadesAutorizadasCobro) {
+        this.listaEntidadesAutorizadasCobro = listaEntidadesAutorizadasCobro;
+    }
+    
     
 }

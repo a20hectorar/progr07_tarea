@@ -10,5 +10,17 @@ package com.mycompany.prog07_tarea;
  * @author Hector
  */
 public class CuentaCorrientePersonal extends CuentaCorriente{
+    private double comisionMantenimiento;
+    
+    public CuentaCorrientePersonal(){}
+
+    public double getComisionMantenimiento() {
+        return comisionMantenimiento;
+    }
+
+    public void setComisionMantenimiento(double comisionMantenimiento) {
+        this.comisionMantenimiento = comisionMantenimiento;
+    }
+    
     
 }
