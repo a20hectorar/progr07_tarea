@@ -1,5 +1,7 @@
 package com.mycompany.prog07_tarea;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -12,7 +14,7 @@ import java.util.Scanner;
 public class Principal {
     int tipoCuenta;
     double saldoInicial=0;
-    
+    public static void main(String[] args){
         System.out.println("Escoja una operación a realizar: ");
         System.out.println("1. Abrir una cuenta nueva.");
         System.out.println("2. Ver listado de cuentas disponibles.");
@@ -26,70 +28,72 @@ public class Principal {
         int opcion= sc.nextInt();
 
         switch (opcion){
-            case 1:
+            case 1 -> {
                 System.out.println("Nombre del titular: ");
-                Persona.nombre=sc.nextLine();
+                Persona cliente=new Persona();
+                cliente.setNombre(sc.nextLine());
                 System.out.println("Apellidos del titular: ");
-                Persona.apellidos=sc.nextLine();
+                cliente.setApellidos(sc.nextLine());
                 System.out.println("Dni del titular: ");
-                Persona.dni=sc.nextLine();
+                cliente.setDni(sc.nextLine());
 
-                Persona nuevoTitular = new Persona(Persona.nombre,Persona.apellidos,Persona.dni);
-                CuentaBancaria.titular=nuevoTitular;
+                CuentaBancaria nuevaCuenta=new CuentaBancaria();
+                nuevaCuenta.setTitular(cliente);
+                
+                System.out.println("Saldo inicial. Introduzca el importe con el que se abrirá la cuenta:");
+                nuevaCuenta.setSaldo(sc.nextDouble());
+               
+                System.out.println("Número de IBAN: ");
+                String nuevoIban=sc.nextLine();
+                
+                while(esIbanValido(nuevoIban)==false){
+                    System.out.println("IBAN incorrecto");
+                    nuevoIban=sc.nextLine();
+                }
+                
+                nuevaCuenta.setIban(nuevoIban);
 
                 System.out.println("Tipo de cuenta: ");
                 System.out.println("Opción 1: cuenta de ahorro.");
                 System.out.println("Opcion 2: cuenta corriente personal.");
                 System.out.println("Opcion 3: cuenta corriente de empresa.");
-                tipoCuenta=sc.nextInt();
-
-                System.out.println("Saldo inicial. Introduzca el importe con el que se abrirá la cuenta:");
-                saldoInicial=sc.nextDouble();
-                CuentaBancaria.saldo=saldoInicial;
-
-                System.out.println("Número de IBAN: ");
-                nuevoIban=sc.nextLine();
-
-                Pattern pattern=Pattern.compile("[ES][0-9]{22}");
-                Matcher matcher=pattern.matcher(nuevoIban);
-                    if(matcher.find() == true){
-                        System.out.println("IBAN válido.");
-                    }else{
-                        while(matcher.find() == false){
-                         System.out.println("Introduzca un IBAN válido: ");
-                         nuevoIban=sc.nextLine();
-                        }
-                    }
-
+                int tipoCuenta=sc.nextInt();
+                    
                 switch (tipoCuenta){
                     case 1:
+                        
+                        
                         System.out.println("Introduzca el tipo de interés de remuneración: ");
-                        CuentaAhorro.interes=sc.nextDouble();
-                        CuentaAhorro nuevaCuentaAhorro=new CuentaAhorro(nuevoTitular,saldoInicial,nuevoIban,interes);
-
+                        
+                        
                     case 2:
                         System.out.println("Introduzca comisión de mantenimiento: ");
-                        CuentaCorrientePersonal.comisionMantenimiento=sc.nextDouble();
-                        CuentaCorrientePersonal nuevaCuentaCorrientePersonal=new CuentaCorrientePersonal(nuevoTitular,saldoInicial,nuevoIban,comisionMantenimiento);
-
+                        
+                        
                     case 3:
                         System.out.println("Introduzca el máximo cubierto permitido: ");
-                        CuentaCorrienteEmpresa.descubiertoMaximo=sc.nextDouble();
-
-                        System.out.println("Introduzca el tipo de interés por descubierto: ");
-                        CuentaCorrienteEmpresa.interesDescubierto=sc.nextDouble();
-
-                        System.out.println("Introduzca la comisión fija por descubierto: ");
-                        CuentaCorrienteEmpresa.comisionFijaDescubierto=sc.nextDouble();
                         
-                        CuentaCorrienteEmpresa nuevaCuentaCorrienteEmpresa=new CuentaCorrienteEmpresa(nuevoTitular,saldoInicial,nuevoIban,descubiertoMaximo,interesDescubierto,comisionFijaDescubierto);
+                        
+                        System.out.println("Introduzca el tipo de interés por descubierto: ");
+                        
+                        
+                        System.out.println("Introduzca la comisión fija por descubierto: ");
+                        
                         
                 }
-        Banco.abrirCuenta(CuentaBancaria);
+                Banco.abrirCuenta(CuentaBancaria);
+            }
+        }
+    }
+        static boolean esIbanValido(String iban){
+            Pattern pattern=Pattern.compile("ES[0-9]{22}");
+                    Matcher matcher=pattern.matcher(iban);
+                        if(matcher.find() == true){
+                            System.out.println("IBAN válido.");
+                            return true;
+                        }else{
+                           return false;
+                            }
         }
 }
 
-
-
-Github token:
-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
