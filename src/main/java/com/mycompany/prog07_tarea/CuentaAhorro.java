@@ -10,5 +10,19 @@ package com.mycompany.prog07_tarea;
  * @author Hector
  */
 public class CuentaAhorro extends CuentaBancaria{
+    private double interes;
+    
+    public CuentaAhorro(){
+        super();
+    }
+
+    public double getInteres() {
+        return interes;
+    }
+
+    public void setInteres(double interes) {
+        this.interes = interes;
+    }
+    
     
 }
