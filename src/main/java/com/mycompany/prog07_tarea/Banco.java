@@ -76,5 +76,4 @@ public class Banco {
         System.out.println("No se encontró la cuenta.");
         return 0;
     }
-    
 }
