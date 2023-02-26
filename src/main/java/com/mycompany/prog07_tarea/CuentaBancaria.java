@@ -14,8 +14,6 @@ public abstract class CuentaBancaria {
     private double saldo;
     private String iban;
     
-    public CuentaBancaria(){}
-    
     public CuentaBancaria(Persona titular, double saldo, String iban){
         this.titular=new Persona(titular.getNombre(),titular.getApellidos(),titular.getDni());
         this.saldo=saldo;

@@ -12,10 +12,6 @@ package com.mycompany.prog07_tarea;
 public abstract class CuentaCorriente extends CuentaBancaria{
     private String listaEntidadesAutorizadasCobro;
     
-    public CuentaCorriente(){
-        super();
-    }
-    
     public CuentaCorriente(Persona titular,double saldo,String iban){
         super(titular,saldo,iban);
     }

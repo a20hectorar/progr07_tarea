@@ -1,4 +1,5 @@
 package com.mycompany.prog07_tarea;
+import static java.lang.System.exit;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,6 +36,13 @@ public class Principal {
             case 4:
                 menuRetirada(sc,banco);
                 break;
+                
+            case 5:
+                consultaSaldo(sc,banco);
+                break;
+            case 6:
+                exit(0);
+                break;
         }
     }
     
@@ -60,22 +68,22 @@ public class Principal {
             System.out.println("Introduzca el IBAN de la cuenta a mostrar: ");
             String iban=sc.nextLine();
             String infoCuenta=banco.informacionCuenta(iban);
-                if(infoCuenta==null){
-                    System.out.println("El IBAN introducido no pertenece a ninguna cuenta.");
-                }else{
-                    System.out.println(infoCuenta);
-                    System.out.println("Introduzca la cantidad a ingresar: ");
-                    double cantidad=sc.nextDouble();
-                        if(cantidad<=0){
-                            System.out.println("La cantidad ha de ser mayor de cero");
+            if(infoCuenta==null){
+                System.out.println("El IBAN introducido no pertenece a ninguna cuenta.");
+            }else{
+                System.out.println(infoCuenta);
+                System.out.println("Introduzca la cantidad a ingresar: ");
+                double cantidad=sc.nextDouble();
+                    if(cantidad<=0){
+                        System.out.println("La cantidad ha de ser mayor de cero");
+                    }else{
+                        if(banco.ingresoCuenta(iban, cantidad)){
+                            System.out.println("Ingreso efectuado");
                         }else{
-                                if(banco.ingresoCuenta(iban, cantidad)){
-                                    System.out.println("Ingreso efectuado");
-                                }else{
-                                    System.out.println("No se ha podido efectuar el ingreso");
-                                }
+                            System.out.println("No se ha podido efectuar el ingreso");
                             }
-                }
+                    }
+            }
             volverInicio(sc);
         }
         
@@ -84,10 +92,26 @@ public class Principal {
             String iban=sc.nextLine();
             System.out.println("Introduzca la cantidad a retirar");
             double cantidad=sc.nextDouble();
-            if(banco.retiradaCuenta(iban,cantidad)){
-                System.out.println("Retirada efectuada.");
+            if(cantidad<=0){
+                System.out.println("La cantidad ha de ser mayor de cero");
             }else{
-                System.out.println("No se ha podido efectuar la retirada");
+                if(banco.retiradaCuenta(iban,cantidad)){
+                    System.out.println("Retirada efectuada.");
+                }else{
+                    System.out.println("No se ha podido efectuar la retirada");
+                }
+            }    
+            volverInicio(sc);
+        }
+        
+        static void consultaSaldo(Scanner sc,Banco banco){
+            System.out.println("Introduzca el IBAN de la cuenta a consultar: ");
+            String iban=sc.nextLine();
+            double obtenerSaldo=banco.obtenerSaldo(iban);
+            if(obtenerSaldo==-1){
+                System.out.println("No se encontró la cuenta.");
+            }else{
+                System.out.println("Su saldo es de: " + obtenerSaldo + " €.");
             }
             volverInicio(sc);
         }

@@ -12,10 +12,6 @@ package com.mycompany.prog07_tarea;
 public class CuentaAhorro extends CuentaBancaria{
     private double interes;
     
-    public CuentaAhorro(){
-        super();
-    }
-    
     public CuentaAhorro(Persona titular,double saldo, String iban, double interes){
         super(titular,saldo,iban);
         this.interes=interes;

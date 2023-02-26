@@ -71,7 +71,6 @@ public class Banco {
                 return listaCuentas[i].getSaldo();
             }
         }
-        System.out.println("No se encontró la cuenta.");
         return -1;
     }
 }
