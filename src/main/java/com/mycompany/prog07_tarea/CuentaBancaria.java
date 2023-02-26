@@ -9,7 +9,7 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
-public abstract class CuentaBancaria {
+public abstract class CuentaBancaria implements Imprimible{
     private Persona titular;
     private double saldo;
     private String iban;
@@ -48,6 +48,12 @@ public abstract class CuentaBancaria {
 
     public void setIban(String iban) {
         this.iban = iban;
+    }
+
+    @Override
+    public String devolverInfoString() {
+        return "Nombre: " + this.titular.getNombre() + " Apellidos: " + this.titular.getApellidos() + " DNI: " + 
+                this.titular.getDni() + " IBAN: " + this.iban + " Saldo: " + this.saldo;
     }
     
   

@@ -9,6 +9,6 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
-public class Imprimible {
-    
+public interface Imprimible {
+    String devolverInfoString();
 }

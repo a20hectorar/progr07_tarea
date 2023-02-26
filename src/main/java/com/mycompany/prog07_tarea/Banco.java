@@ -26,7 +26,7 @@ public class Banco {
     
     String[] listadoCuentas(){
         for(int i=0;i<listaCuentas.length;i++){
-            infoCuenta[i]=listaCuentas[i].getTitular().getNombre() + listaCuentas[i].getTitular().getApellidos() + listaCuentas[i].getTitular().getDni();
+            infoCuenta[i]=listaCuentas[i].devolverInfoString();
         }
         return infoCuenta;
     }
