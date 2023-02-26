@@ -15,6 +15,11 @@ public class CuentaCorrientePersonal extends CuentaCorriente{
     public CuentaCorrientePersonal(){
         super();
     }
+    
+    public CuentaCorrientePersonal(Persona titular,double saldo,String iban, double comisionMantenimiento){
+        super(titular,saldo,iban);
+        this.comisionMantenimiento=comisionMantenimiento;
+    }
 
     public double getComisionMantenimiento() {
         return comisionMantenimiento;

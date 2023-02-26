@@ -15,6 +15,10 @@ public abstract class CuentaCorriente extends CuentaBancaria{
     public CuentaCorriente(){
         super();
     }
+    
+    public CuentaCorriente(Persona titular,double saldo,String iban){
+        super(titular,saldo,iban);
+    }
 
     public String getListaEntidadesAutorizadasCobro() {
         return listaEntidadesAutorizadasCobro;
@@ -23,6 +27,4 @@ public abstract class CuentaCorriente extends CuentaBancaria{
     public void setListaEntidadesAutorizadasCobro(String listaEntidadesAutorizadasCobro) {
         this.listaEntidadesAutorizadasCobro = listaEntidadesAutorizadasCobro;
     }
-    
-    
 }

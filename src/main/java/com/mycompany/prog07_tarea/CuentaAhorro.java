@@ -15,6 +15,11 @@ public class CuentaAhorro extends CuentaBancaria{
     public CuentaAhorro(){
         super();
     }
+    
+    public CuentaAhorro(Persona titular,double saldo, String iban, double interes){
+        super(titular,saldo,iban);
+        this.interes=interes;
+    }
 
     public double getInteres() {
         return interes;

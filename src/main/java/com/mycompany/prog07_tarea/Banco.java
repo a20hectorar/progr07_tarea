@@ -10,12 +10,12 @@ package com.mycompany.prog07_tarea;
  * @author Hector
  */
 public class Banco {
-    
-    CuentaBancaria listaCuentas[]=new CuentaBancaria[100];
-    String infoCuenta[]=new String[100];
+    final int MAXNUM=100;
+    CuentaBancaria listaCuentas[]=new CuentaBancaria[MAXNUM];
+    String infoCuenta[]=new String[MAXNUM];
     
     boolean abrirCuenta(CuentaBancaria nuevaCuenta){
-        for(int i=0;i<100;i++){
+        for(int i=0;i<MAXNUM;i++){
             if(listaCuentas[i]==null){
                 listaCuentas[i]=nuevaCuenta;
                 return true;

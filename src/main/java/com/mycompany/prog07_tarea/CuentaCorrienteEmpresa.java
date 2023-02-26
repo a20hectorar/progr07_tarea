@@ -17,6 +17,13 @@ public class CuentaCorrienteEmpresa extends CuentaCorriente{
     public CuentaCorrienteEmpresa(){
         super();
     }
+    
+    public CuentaCorrienteEmpresa(Persona titular, double saldo, String iban, double interesDescubierto, double descubiertoMaximo, double comisionFijaDescubierto){
+        super(titular,saldo,iban);
+        this.interesDescubierto=interesDescubierto;
+        this.descubiertoMaximo=descubiertoMaximo;
+        this.comisionFijaDescubierto=comisionFijaDescubierto;
+    }
 
     public double getInteresDescubierto() {
         return interesDescubierto;

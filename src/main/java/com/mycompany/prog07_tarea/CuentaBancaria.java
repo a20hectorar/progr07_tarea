@@ -9,12 +9,24 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
-public class CuentaBancaria {
+public abstract class CuentaBancaria {
     private Persona titular;
     private double saldo;
     private String iban;
     
     public CuentaBancaria(){}
+    
+    public CuentaBancaria(Persona titular, double saldo, String iban){
+        this.titular=new Persona(titular.getNombre(),titular.getApellidos(),titular.getDni());
+        this.saldo=saldo;
+        this.iban=iban;
+    }
+        
+    public CuentaBancaria(String nombre, String apellidos, String dni, double saldo, String iban){
+        this.titular=new Persona(nombre,apellidos,dni);
+        this.saldo=saldo;
+        this.iban=iban;
+    }
 
     public Persona getTitular() {
         return titular;
