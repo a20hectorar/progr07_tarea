@@ -14,7 +14,9 @@ public class CuentaCorrienteEmpresa extends CuentaCorriente{
     private double descubiertoMaximo;
     private double comisionFijaDescubierto;
     
-    public CuentaCorrienteEmpresa(){}
+    public CuentaCorrienteEmpresa(){
+        super();
+    }
 
     public double getInteresDescubierto() {
         return interesDescubierto;

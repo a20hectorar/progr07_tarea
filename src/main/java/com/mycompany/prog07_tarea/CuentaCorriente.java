@@ -12,7 +12,9 @@ package com.mycompany.prog07_tarea;
 public abstract class CuentaCorriente extends CuentaBancaria{
     private String listaEntidadesAutorizadasCobro;
     
-    public CuentaCorriente(){};
+    public CuentaCorriente(){
+        super();
+    }
 
     public String getListaEntidadesAutorizadasCobro() {
         return listaEntidadesAutorizadasCobro;

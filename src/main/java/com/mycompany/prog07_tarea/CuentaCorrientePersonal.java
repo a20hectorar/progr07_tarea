@@ -12,7 +12,9 @@ package com.mycompany.prog07_tarea;
 public class CuentaCorrientePersonal extends CuentaCorriente{
     private double comisionMantenimiento;
     
-    public CuentaCorrientePersonal(){}
+    public CuentaCorrientePersonal(){
+        super();
+    }
 
     public double getComisionMantenimiento() {
         return comisionMantenimiento;
