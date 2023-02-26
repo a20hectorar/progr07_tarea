@@ -65,19 +65,21 @@ public class Principal {
                         nuevaCuentaAhorro.setInteres(sc.nextDouble());
                         break;
                     case 2:
-                        nuevaCuenta = new CuentaCorrientePersonal;
+                        nuevaCuenta = new CuentaCorrientePersonal();
                         System.out.println("Introduzca comisión de mantenimiento: ");
-                        
+                        nuevaCuenta.setComisionMantenimiento(sc.nextDouble());
+                        break;
                         
                     case 3:
+                        nuevaCuenta = new CuentaCorrienteEmpresa;
                         System.out.println("Introduzca el máximo cubierto permitido: ");
-                        
+                        nuevaCuenta.set
                         
                         System.out.println("Introduzca el tipo de interés por descubierto: ");
                         
                         
                         System.out.println("Introduzca la comisión fija por descubierto: ");
-                        
+                        break;
                         
                 }
             }
