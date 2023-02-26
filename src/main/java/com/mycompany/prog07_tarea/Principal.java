@@ -27,6 +27,14 @@ public class Principal {
             case 2:
                 mostrarListadoCuentas(sc,banco);
                 break;
+                
+            case 3:
+                menuIngreso(sc,banco);
+                break;
+                
+            case 4:
+                menuRetirada(sc,banco);
+                break;
         }
     }
     
@@ -45,7 +53,46 @@ public class Principal {
             for(String fila:listaArray){
                 System.out.println(fila);
             }
-            
+            volverInicio(sc);
+        }
+        
+        static void menuIngreso(Scanner sc,Banco banco){
+            System.out.println("Introduzca el IBAN de la cuenta a mostrar: ");
+            String iban=sc.nextLine();
+            String infoCuenta=banco.informacionCuenta(iban);
+                if(infoCuenta==null){
+                    System.out.println("El IBAN introducido no pertenece a ninguna cuenta.");
+                }else{
+                    System.out.println(infoCuenta);
+                    System.out.println("Introduzca la cantidad a ingresar: ");
+                    double cantidad=sc.nextDouble();
+                        if(cantidad<=0){
+                            System.out.println("La cantidad ha de ser mayor de cero");
+                        }else{
+                                if(banco.ingresoCuenta(iban, cantidad)){
+                                    System.out.println("Ingreso efectuado");
+                                }else{
+                                    System.out.println("No se ha podido efectuar el ingreso");
+                                }
+                            }
+                }
+            volverInicio(sc);
+        }
+        
+        static void menuRetirada(Scanner sc,Banco banco){
+            System.out.println("Introduzca el IBAN de la cuenta: ");
+            String iban=sc.nextLine();
+            System.out.println("Introduzca la cantidad a retirar");
+            double cantidad=sc.nextDouble();
+            if(banco.retiradaCuenta(iban,cantidad)){
+                System.out.println("Retirada efectuada.");
+            }else{
+                System.out.println("No se ha podido efectuar la retirada");
+            }
+            volverInicio(sc);
+        }
+        
+        static void volverInicio(Scanner sc){
             System.out.println("Escriba \"s\" para volver al menú de inicio");
             char volverInicio=sc.next().charAt(0);
             if(volverInicio=='s'){
