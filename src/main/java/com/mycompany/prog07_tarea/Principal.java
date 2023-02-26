@@ -15,12 +15,23 @@ import java.util.regex.Pattern;
 public class Principal {
     public static void main(String[] args){
         Banco banco=new Banco();
-        mostrarMenu();
-        
         Scanner sc=new Scanner(System.in);
-
-        int opcion= sc.nextInt();
-        switch (opcion){
+        mostrarMenu(sc,banco);
+    }
+    
+        static void mostrarMenu(Scanner sc,Banco banco){
+            System.out.println("Escoja una operación a realizar: ");
+            System.out.println("1. Abrir una cuenta nueva.");
+            System.out.println("2. Ver listado de cuentas disponibles.");
+            System.out.println("3. Obtener los datos de una cuenta concreta. Realizar un ingreso en cuenta");
+            System.out.println("4. Retirar efectivo de una cuenta.");
+            System.out.println("5. Consultar el saldo actual de una cuenta.");
+            System.out.println("6. Salir de la aplicación");
+            System.out.println("Escoja una opción del menú: ");
+            int opcion= sc.nextInt();
+            //consumimos el siguiente salto de línea
+            sc.nextLine();
+            switch (opcion){
             case 1 : 
                 menuAbrirCuenta(sc,banco);
                 break;
@@ -44,24 +55,16 @@ public class Principal {
                 exit(0);
                 break;
         }
-    }
-    
-        static void mostrarMenu(){
-            System.out.println("Escoja una operación a realizar: ");
-            System.out.println("1. Abrir una cuenta nueva.");
-            System.out.println("2. Ver listado de cuentas disponibles.");
-            System.out.println("3. Obtener los datos de una cuenta concreta. Realizar un ingreso en cuenta");
-            System.out.println("4. Retirar efectivo de una cuenta.");
-            System.out.println("5. Consultar el saldo actual de una cuenta.");
-            System.out.println("6. Salir de la aplicación");
         }
         
         static void mostrarListadoCuentas(Scanner sc,Banco banco){
             String listaArray[]=banco.listadoCuentas();
             for(String fila:listaArray){
+                if(fila!=null){
                 System.out.println(fila);
+                }
             }
-            volverInicio(sc);
+            volverInicio(sc,banco);
         }
         
         static void menuIngreso(Scanner sc,Banco banco){
@@ -74,6 +77,8 @@ public class Principal {
                 System.out.println(infoCuenta);
                 System.out.println("Introduzca la cantidad a ingresar: ");
                 double cantidad=sc.nextDouble();
+                //consumimos el siguiente salto de línea
+                sc.nextLine();
                     if(cantidad<=0){
                         System.out.println("La cantidad ha de ser mayor de cero");
                     }else{
@@ -84,7 +89,7 @@ public class Principal {
                             }
                     }
             }
-            volverInicio(sc);
+            volverInicio(sc,banco);
         }
         
         static void menuRetirada(Scanner sc,Banco banco){
@@ -92,6 +97,8 @@ public class Principal {
             String iban=sc.nextLine();
             System.out.println("Introduzca la cantidad a retirar");
             double cantidad=sc.nextDouble();
+            //consumimos el siguiente salto de línea
+                sc.nextLine();
             if(cantidad<=0){
                 System.out.println("La cantidad ha de ser mayor de cero");
             }else{
@@ -101,7 +108,7 @@ public class Principal {
                     System.out.println("No se ha podido efectuar la retirada");
                 }
             }    
-            volverInicio(sc);
+            volverInicio(sc,banco);
         }
         
         static void consultaSaldo(Scanner sc,Banco banco){
@@ -113,14 +120,14 @@ public class Principal {
             }else{
                 System.out.println("Su saldo es de: " + obtenerSaldo + " €.");
             }
-            volverInicio(sc);
+            volverInicio(sc,banco);
         }
         
-        static void volverInicio(Scanner sc){
+        static void volverInicio(Scanner sc,Banco banco){
             System.out.println("Escriba \"s\" para volver al menú de inicio");
-            char volverInicio=sc.next().charAt(0);
+            char volverInicio=sc.nextLine().charAt(0);
             if(volverInicio=='s'){
-                mostrarMenu();
+                mostrarMenu(sc,banco);
             }
         }
         
@@ -147,33 +154,38 @@ public class Principal {
                 CuentaBancaria nuevaCuenta;
                 System.out.println("Saldo inicial. Introduzca el importe con el que se abrirá la cuenta:");
                 Double saldo=sc.nextDouble();
+                //consumimos el siguiente salto de línea
+                sc.nextLine();
               
                 System.out.println("Número de IBAN: ");
                 String nuevoIban=sc.nextLine();
                 
-                while(esIbanValido(nuevoIban)==false){
+              /*  while(esIbanValido(nuevoIban)==false){
                     System.out.println("IBAN incorrecto");
                     nuevoIban=sc.nextLine();
-                }
+                }*/
                                
                 System.out.println("Tipo de cuenta: ");
                 System.out.println("Opción 1: cuenta de ahorro.");
                 System.out.println("Opcion 2: cuenta corriente personal.");
                 System.out.println("Opcion 3: cuenta corriente de empresa.");
                 int tipoCuenta=sc.nextInt();
+                //consumimos el siguiente salto de línea
+                sc.nextLine();
                 boolean seGrabo=false;
                 switch (tipoCuenta){
                     case 1:
                         double interes=0;
                         System.out.println("Introduzca el tipo de interés de remuneración: ");
                         interes=sc.nextDouble();
+                        //consumimos el siguiente salto de línea
+                        sc.nextLine();
                         nuevaCuenta=new CuentaAhorro(cliente,saldo,nuevoIban,interes);
                         seGrabo=banco.abrirCuenta(nuevaCuenta);
                             if(seGrabo){
-                                mostrarMenu();
+                                System.out.println("Cuenta creada correctamente");
                             }else{
                                 System.out.println("La cuenta no se grabó correctamente.");
-                                mostrarMenu();
                             }
                         break;
                     case 2:
@@ -184,10 +196,9 @@ public class Principal {
                         banco.abrirCuenta(nuevaCuenta);
                         seGrabo=banco.abrirCuenta(nuevaCuenta);
                             if(seGrabo){
-                                mostrarMenu();
+                                System.out.println("Cuenta creada correctamente");
                             }else{
                                 System.out.println("La cuenta no se grabó correctamente.");
-                                mostrarMenu();
                             }
                         break;
                         
@@ -197,20 +208,26 @@ public class Principal {
                         double comisionFijaDescubierto=0;
                         System.out.println("Introduzca el máximo descubierto permitido: ");
                         maxDescubierto=sc.nextDouble();
+                        //consumimos el siguiente salto de línea
+                        sc.nextLine();
                         System.out.println("Introduzca el tipo de interés por descubierto: ");
                         interesDescubierto=sc.nextDouble();
+                        //consumimos el siguiente salto de línea
+                        sc.nextLine();
                         System.out.println("Introduzca la comisión fija por descubierto: ");
                         comisionFijaDescubierto=sc.nextDouble();
+                        //consumimos el siguiente salto de línea
+                        sc.nextLine();
                         nuevaCuenta = new CuentaCorrienteEmpresa(cliente,saldo,nuevoIban,maxDescubierto,interesDescubierto,comisionFijaDescubierto);
                         banco.abrirCuenta(nuevaCuenta);
                         seGrabo=banco.abrirCuenta(nuevaCuenta);
                             if(seGrabo){
-                                mostrarMenu();
+                                System.out.println("Cuenta creada correctamente");
                             }else{
                                 System.out.println("La cuenta no se grabó correctamente.");
-                                mostrarMenu();
                             }
                         break;
                                         }
+                volverInicio(sc,banco);
         }
 }

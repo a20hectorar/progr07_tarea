@@ -26,14 +26,16 @@ public class Banco {
     
     String[] listadoCuentas(){
         for(int i=0;i<listaCuentas.length;i++){
+            if(listaCuentas[i]!=null){ 
             infoCuenta[i]=listaCuentas[i].devolverInfoString();
+            }
         }
         return infoCuenta;
     }
     
     String informacionCuenta(String iban){  
         listadoCuentas();
-        for(int i=0;i<listaCuentas.length;i++){
+        for(int i=0;i<listaCuentas.length && listaCuentas[i]!=null;i++){
             if(listaCuentas[i].getIban().equals(iban)){
                 return infoCuenta[i];
             }
@@ -43,16 +45,18 @@ public class Banco {
     
     boolean ingresoCuenta(String iban,double cantidad){
         for(int i=0;i<listaCuentas.length;i++){
-            if(listaCuentas[i].getIban().equals(iban)){
-                listaCuentas[i].setSaldo(listaCuentas[i].getSaldo() + cantidad);
-                return true;
+            if(listaCuentas[i]!=null){
+                if(listaCuentas[i].getIban().equals(iban)){
+                    listaCuentas[i].setSaldo(listaCuentas[i].getSaldo() + cantidad);
+                    return true;
+                }
             }
         }
         return false;
     }
     
     boolean retiradaCuenta(String iban,double cantidad){
-        for(int i=0;i<listaCuentas.length;i++){
+        for(int i=0;i<listaCuentas.length && listaCuentas[i]!=null;i++){
             if(listaCuentas[i].getIban().equals(iban)){
                 if(listaCuentas[i].getSaldo()>=cantidad){
                     listaCuentas[i].setSaldo(listaCuentas[i].getSaldo() - cantidad);
@@ -66,7 +70,7 @@ public class Banco {
     }
     
     double obtenerSaldo(String iban){
-         for(int i=0;i<listaCuentas.length;i++){
+         for(int i=0;i<listaCuentas.length && listaCuentas[i]!=null;i++){
             if(listaCuentas[i].getIban().equals(iban)){
                 return listaCuentas[i].getSaldo();
             }
