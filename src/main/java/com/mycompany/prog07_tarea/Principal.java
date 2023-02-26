@@ -63,9 +63,9 @@ public class Principal {
                         nuevaCuentaAhorro=(CuentaAhorro) nuevaCuenta;
                         System.out.println("Introduzca el tipo de interés de remuneración: ");
                         nuevaCuentaAhorro.setInteres(sc.nextDouble());
-                        
+                        break;
                     case 2:
-                        
+                        nuevaCuenta = new CuentaCorrientePersonal;
                         System.out.println("Introduzca comisión de mantenimiento: ");
                         
                         
