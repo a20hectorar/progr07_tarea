@@ -22,7 +22,11 @@ public class Principal {
         switch (opcion){
             case 1 : 
                 menuAbrirCuenta(sc,banco);
-            break;
+                break;
+            
+            case 2:
+                mostrarListadoCuentas(sc,banco);
+                break;
         }
     }
     
@@ -35,6 +39,20 @@ public class Principal {
             System.out.println("5. Consultar el saldo actual de una cuenta.");
             System.out.println("6. Salir de la aplicación");
         }
+        
+        static void mostrarListadoCuentas(Scanner sc,Banco banco){
+            String listaArray[]=banco.listadoCuentas();
+            for(String fila:listaArray){
+                System.out.println(fila);
+            }
+            
+            System.out.println("Escriba \"s\" para volver al menú de inicio");
+            char volverInicio=sc.next().charAt(0);
+            if(volverInicio=='s'){
+                mostrarMenu();
+            }
+        }
+        
         static boolean esIbanValido(String iban){
             Pattern pattern=Pattern.compile("ES[0-9]{22}");
                     Matcher matcher=pattern.matcher(iban);
