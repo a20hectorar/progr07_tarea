@@ -73,7 +73,6 @@ public class Principal {
                     case 3:
                         nuevaCuenta = new CuentaCorrienteEmpresa;
                         System.out.println("Introduzca el máximo cubierto permitido: ");
-                        nuevaCuenta.set
                         
                         System.out.println("Introduzca el tipo de interés por descubierto: ");
                         
