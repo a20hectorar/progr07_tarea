@@ -80,8 +80,7 @@ public class Principal {
                         
                         System.out.println("Introduzca la comisión fija por descubierto: ");
                         break;
-                        
-                }
+                                        }
             }
         }
     }
