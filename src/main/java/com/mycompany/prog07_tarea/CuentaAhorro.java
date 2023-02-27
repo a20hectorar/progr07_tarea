@@ -12,6 +12,7 @@ package com.mycompany.prog07_tarea;
 
    /**
  * clase que hereda de CuentaBancaria
+ * 
  */
 public class CuentaAhorro extends CuentaBancaria{
        /**

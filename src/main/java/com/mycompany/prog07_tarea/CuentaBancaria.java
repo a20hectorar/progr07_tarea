@@ -9,6 +9,10 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
+
+ /**
+ * clase padre de las cuentas
+ */
 public abstract class CuentaBancaria implements Imprimible{
        /**
  * atributo titular de tipo objeto Persona con los datos personales

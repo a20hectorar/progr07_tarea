@@ -9,25 +9,30 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
+
+ /**
+ * almacena los objetos tipo CuentaBancaria
+ */
 public class Banco {
-    /**
- * MAXNUM es una constante que toma el valor límite del array de cuentas
- * lo metemos en una constante para poder cambiar su valor a la hora de hacer pruebas
+    
+  /*
+ MAXNUM es una constante que toma el valor límite del array de cuentas
+ lo metemos en una constante para poder cambiar su valor a la hora de hacer pruebas
  */
     final int MAXNUM=100;
-        /**
- * creamos el array listaCuentas donde iremos guardando los objetos de tipo CuentaBancaria
+        /*
+ creamos el array listaCuentas donde iremos guardando los objetos de tipo CuentaBancaria
  */
     CuentaBancaria listaCuentas[]=new CuentaBancaria[MAXNUM];
     String infoCuenta[]=new String[MAXNUM];
-        /**
+ /**
  * el método abrirCuenta toma como parámetro de entrada un objeto tipo CuentaBancaria y nos recorre el array de las cuentas
  * hasta encontrar un hueco, donde guardará el siguiente objeto
  * @param nuevaCuenta de tipo CuentaBancaria
  * @return true si guarda la cuenta
  * @return false si no puede guardar la cuenta
  */
-    boolean abrirCuenta(CuentaBancaria nuevaCuenta){
+    public boolean abrirCuenta(CuentaBancaria nuevaCuenta){
         for(int i=0;i<MAXNUM;i++){
             if(listaCuentas[i]==null){
                 listaCuentas[i]=nuevaCuenta;
@@ -41,7 +46,7 @@ public class Banco {
  * como cadena de caracteres. Las cuentas conservan el mismo orden en ambos arrays
  * @return array infoCuenta
  */
-    String[] listadoCuentas(){
+    public String[] listadoCuentas(){
         for(int i=0;i<listaCuentas.length;i++){
             if(listaCuentas[i]!=null){ 
             infoCuenta[i]=listaCuentas[i].devolverInfoString();
@@ -56,7 +61,7 @@ public class Banco {
  * @return la posicion de la cuenta en el array infoCuenta
  * @return null si no hay coincidencia en el iban
  */
-    String informacionCuenta(String iban){  
+    public String informacionCuenta(String iban){  
         listadoCuentas();
         for(int i=0;i<listaCuentas.length && listaCuentas[i]!=null;i++){
             if(listaCuentas[i].getIban().equals(iban)){
@@ -73,7 +78,7 @@ public class Banco {
  * @return true si hace el ingreso
  * @return false si no hace el ingreso
  */
-    boolean ingresoCuenta(String iban,double cantidad){
+    public boolean ingresoCuenta(String iban,double cantidad){
         for(int i=0;i<listaCuentas.length;i++){
             if(listaCuentas[i]!=null){
                 if(listaCuentas[i].getIban().equals(iban)){
@@ -93,7 +98,7 @@ public class Banco {
  * @return true si hace la retirada
  * @return false si no hace la retirada
  */
-    boolean retiradaCuenta(String iban,double cantidad){
+    public boolean retiradaCuenta(String iban,double cantidad){
         for(int i=0;i<listaCuentas.length && listaCuentas[i]!=null;i++){
             if(listaCuentas[i].getIban().equals(iban)){
                 //comprobamos que la cantidad a restar del saldo es por lo menos igual al saldo de la cuenta
@@ -101,8 +106,6 @@ public class Banco {
                     listaCuentas[i].setSaldo(listaCuentas[i].getSaldo() - cantidad);
                     return true;
                 }
-            }else{
-                return false;
             }
         }
         return false;
@@ -113,7 +116,7 @@ public class Banco {
  * @return el saldo guardado en el array listaCuentas
  * @return -1 si no encuentra la cuenta
  */
-    double obtenerSaldo(String iban){
+    public double obtenerSaldo(String iban){
          for(int i=0;i<listaCuentas.length && listaCuentas[i]!=null;i++){
             if(listaCuentas[i].getIban().equals(iban)){
                 return listaCuentas[i].getSaldo();

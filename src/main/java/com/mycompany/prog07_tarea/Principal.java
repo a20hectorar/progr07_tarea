@@ -13,15 +13,13 @@ import java.util.regex.Pattern;
  * @author Hector
  */
 
-       /**
- * 
- */
-public class Principal {
-          /**
+ /**
  * clase principal con el método main
  * instancia dos objetos de tipo Banco y Scanner
  * llama al método mostrarMenú como inicio del programa
  */
+public class Principal {
+         
     public static void main(String[] args){
         Banco banco=new Banco();
         Scanner sc=new Scanner(System.in);
@@ -32,7 +30,7 @@ public class Principal {
  * @param sc, que es la entrada por teclado
  * @param banco que es un objeto de tipo Banco
  */
-        static void mostrarMenu(Scanner sc,Banco banco){
+        public static void mostrarMenu(Scanner sc,Banco banco){
             System.out.println("Escoja una operación a realizar: ");
             System.out.println("1. Abrir una cuenta nueva.");
             System.out.println("2. Ver listado de cuentas disponibles.");
@@ -76,7 +74,7 @@ public class Principal {
  * @param sc, que es la entrada por teclado
  * @param banco que es un objeto de tipo Banco
  */
-        static void mostrarListadoCuentas(Scanner sc,Banco banco){
+        public static void mostrarListadoCuentas(Scanner sc,Banco banco){
             String listaArray[]=banco.listadoCuentas();
             for(String fila:listaArray){
                 if(fila!=null){
@@ -91,7 +89,7 @@ public class Principal {
  * @param sc, que es la entrada por teclado
  * @param banco que es un objeto de tipo Banco
  */
-        static void menuIngreso(Scanner sc,Banco banco){
+        public static void menuIngreso(Scanner sc,Banco banco){
             System.out.println("Introduzca el IBAN de la cuenta a mostrar: ");
             String iban=sc.nextLine();
             String infoCuenta=banco.informacionCuenta(iban);
@@ -121,7 +119,7 @@ public class Principal {
  * @param sc, que es la entrada por teclado
  * @param banco que es un objeto de tipo Banco
  */
-        static void menuRetirada(Scanner sc,Banco banco){
+        public static void menuRetirada(Scanner sc,Banco banco){
             System.out.println("Introduzca el IBAN de la cuenta: ");
             String iban=sc.nextLine();
             System.out.println("Introduzca la cantidad a retirar");
@@ -145,7 +143,7 @@ public class Principal {
  * @param sc, que es la entrada por teclado
  * @param banco que es un objeto de tipo Banco
  */
-        static void consultaSaldo(Scanner sc,Banco banco){
+        public static void consultaSaldo(Scanner sc,Banco banco){
             System.out.println("Introduzca el IBAN de la cuenta a consultar: ");
             String iban=sc.nextLine();
             double obtenerSaldo=banco.obtenerSaldo(iban);
@@ -162,12 +160,15 @@ public class Principal {
  * @param sc, que es la entrada por teclado
  * @param banco que es un objeto de tipo Banco
  */
-        static void volverInicio(Scanner sc,Banco banco){
+        public static void volverInicio(Scanner sc,Banco banco){
             System.out.println("Escriba \"s\" para volver al menú de inicio");
-            char volverInicio=sc.nextLine().charAt(0);
-            if(volverInicio=='s'){
-                mostrarMenu(sc,banco);
+            char volverInicio=sc.next().charAt(0);
+            while(volverInicio!='s'){
+                volverInicio=sc.next().charAt(0);
             }
+                if(volverInicio=='s'){
+                    mostrarMenu(sc,banco);
+                }
         }
               /**
  * comprueba si el iban introducido es válido
@@ -175,7 +176,7 @@ public class Principal {
  * @return true si es válido
  * @return false si no es válido
  */
-        static boolean esIbanValido(String iban){
+        public static boolean esIbanValido(String iban){
             Pattern pattern=Pattern.compile("ES[0-9]{22}");
                     Matcher matcher=pattern.matcher(iban);
                         if(matcher.find() == true){
@@ -190,7 +191,7 @@ public class Principal {
  * @param sc, que es la entrada por teclado
  * @param banco que es un objeto de tipo Banco
  */
-        static void menuAbrirCuenta(Scanner sc,Banco banco){
+        public static void menuAbrirCuenta(Scanner sc,Banco banco){
             //primero introducimos los datos personales del titular(tipo Persona) en el objeto cliente
             System.out.println("Nombre del titular: ");
                 Persona cliente=new Persona();
@@ -211,10 +212,10 @@ public class Principal {
                 //pedimos el iban por teclado
                 String nuevoIban=sc.nextLine();
                 //comprueba si el formato del iban es válido
-              /*  while(esIbanValido(nuevoIban)==false){
+                while(esIbanValido(nuevoIban)==false){
                     System.out.println("IBAN incorrecto");
                     nuevoIban=sc.nextLine();
-                }*/
+                }
                 //submenú de elección de tipo de cuenta           
                 System.out.println("Tipo de cuenta: ");
                 System.out.println("Opción 1: cuenta de ahorro.");

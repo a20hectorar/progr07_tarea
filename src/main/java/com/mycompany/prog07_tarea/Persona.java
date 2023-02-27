@@ -10,6 +10,10 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
+
+ /**
+ * clase que crea objeto de tipo Persona
+ */
 public class Persona {
        /**
  * atributos de datos personales de una persona
