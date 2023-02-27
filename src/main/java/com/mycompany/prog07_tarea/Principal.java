@@ -192,8 +192,9 @@ public class Principal {
                         double comisionMantenimiento=0;
                         System.out.println("Introduzca el tipo de comisión de mantenimiento: ");
                         comisionMantenimiento=sc.nextDouble();
+                        //consumimos el siguiente salto de línea
+                        sc.nextLine();
                         nuevaCuenta=new CuentaCorrientePersonal(cliente,saldo,nuevoIban,comisionMantenimiento);
-                        banco.abrirCuenta(nuevaCuenta);
                         seGrabo=banco.abrirCuenta(nuevaCuenta);
                             if(seGrabo){
                                 System.out.println("Cuenta creada correctamente");
@@ -219,7 +220,6 @@ public class Principal {
                         //consumimos el siguiente salto de línea
                         sc.nextLine();
                         nuevaCuenta = new CuentaCorrienteEmpresa(cliente,saldo,nuevoIban,maxDescubierto,interesDescubierto,comisionFijaDescubierto);
-                        banco.abrirCuenta(nuevaCuenta);
                         seGrabo=banco.abrirCuenta(nuevaCuenta);
                             if(seGrabo){
                                 System.out.println("Cuenta creada correctamente");
