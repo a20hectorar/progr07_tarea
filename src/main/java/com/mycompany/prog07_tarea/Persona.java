@@ -11,12 +11,20 @@ package com.mycompany.prog07_tarea;
  * @author Hector
  */
 public class Persona {
+       /**
+ * atributos de datos personales de una persona
+ */
     private String nombre;
     private String apellidos;
     private String dni;
     
     public Persona(){}
-    
+       /**
+ * constructor con 3 parámetros
+ * @param nombre de la persona
+ * @param apellidos de la persona
+ * @param dni de la persona
+ */
     public Persona(String nombre, String apellidos,String dni){
         this.nombre=nombre;
         this.apellidos=apellidos;

@@ -9,6 +9,10 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
+
+   /**
+ * Interfaz que muestra los datos formateados de cada cuenta
+ */
 public interface Imprimible {
     String devolverInfoString();
 }

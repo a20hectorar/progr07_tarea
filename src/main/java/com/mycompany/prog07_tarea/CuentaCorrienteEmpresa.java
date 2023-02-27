@@ -9,11 +9,28 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
+
+   /**
+ * clase que hereda de CuentaCorriente que a su vez hereda de CuentaBancaria
+ */
 public class CuentaCorrienteEmpresa extends CuentaCorriente{
+       /**
+ * interesDescubierto guarda el valor del tipo de interes cargado sobre un descubierto
+ * descubiertoMaximo guarda el valor de la cantidad máxima que puede estar en negativo
+ * comisionFijaDescubierto guarda el valor de una comisión fija sobre el descubierto
+ */
     private double interesDescubierto;
     private double descubiertoMaximo;
     private double comisionFijaDescubierto;
-    
+           /**
+ * constructor con 6 parámetros
+ * @param titular de la cuenta
+ * @param saldo de la cuenta
+ * @param iban de la cuenta
+ * @param interesDescubierto propio de la clase
+ * @param descubiertoMaximo propio de la clase
+ * @param comisionFijaDescubierto propio de clase
+ */
     public CuentaCorrienteEmpresa(Persona titular, double saldo, String iban, double interesDescubierto, double descubiertoMaximo, double comisionFijaDescubierto){
         super(titular,saldo,iban);
         this.interesDescubierto=interesDescubierto;

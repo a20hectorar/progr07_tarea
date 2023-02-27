@@ -9,9 +9,22 @@ package com.mycompany.prog07_tarea;
  *
  * @author Hector
  */
+
+   /**
+ * clase que hereda de CuentaBancaria
+ */
 public class CuentaAhorro extends CuentaBancaria{
+       /**
+ * interes es un atributo propio de CuentaAhorro que guarda el valor de los intereses sobre el saldo
+ */
     private double interes;
-    
+       /**
+ * constructor con 4 parámetros
+ * @param titular de la cuenta:objeto tipo Persona
+ * @param saldo de la cuenta
+ * @param iban de la cuenta
+ * @param interes de la cuenta, parámetro propio de la clase
+ */
     public CuentaAhorro(Persona titular,double saldo, String iban, double interes){
         super(titular,saldo,iban);
         this.interes=interes;
